@@ -1,26 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[Animatious 一起动画开源组]]></title>
-  <subtitle><![CDATA[我们是一起动画开源组Animatious。我们致力于成为中国最顶尖的动效开源团队。]]></subtitle>
-  <link href="/atom.xml" rel="self"/>
-  <link href="http://anius.io/"/>
-  <updated>2015-11-19T17:33:14.000Z</updated>
-  <id>http://anius.io/</id>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
   
-  <author>
-    <name><![CDATA[Animatious]]></name>
-    
-  </author>
+  <title>tvOS视差按钮的ObjC实现 | Animatious 一起动画开源组</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="介绍苹果在最新发布的Apple TV里引入了有趣的图标设计具体说来 图标由2-5个分层图层构成 在图标被选中的时候 图标内每个图层进行不同幅度的位移 从而形成视觉上具有深度距离感的视差效果 图标构成和效果可以见视频:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tvOS视差按钮的ObjC实现">
+<meta property="og:url" content="http://anius.io/2015/11/18/tvOS视差按钮的ObjC实现/index.html">
+<meta property="og:site_name" content="Animatious 一起动画开源组">
+<meta property="og:description" content="介绍苹果在最新发布的Apple TV里引入了有趣的图标设计具体说来 图标由2-5个分层图层构成 在图标被选中的时候 图标内每个图层进行不同幅度的位移 从而形成视觉上具有深度距离感的视差效果 图标构成和效果可以见视频:">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonPic_thumb.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonPic_1.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonPic_2.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonPic_3.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonGif_1.gif">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonGif_2.gif">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonPic_4.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonGif_3.gif">
+<meta property="og:image" content="http://anius.io/img/2015/11/tvOS/tvOSButtonGif_4.gif">
+<meta property="og:updated_time" content="2015-11-19T17:33:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tvOS视差按钮的ObjC实现">
+<meta name="twitter:description" content="介绍苹果在最新发布的Apple TV里引入了有趣的图标设计具体说来 图标由2-5个分层图层构成 在图标被选中的时候 图标内每个图层进行不同幅度的位移 从而形成视觉上具有深度距离感的视差效果 图标构成和效果可以见视频:">
   
-  <generator uri="http://hexo.io/">Hexo</generator>
   
-  <entry>
-    <title><![CDATA[tvOS视差按钮的ObjC实现]]></title>
-    <link href="http://anius.io/2015/11/18/tvOS%E8%A7%86%E5%B7%AE%E6%8C%89%E9%92%AE%E7%9A%84ObjC%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://anius.io/2015/11/18/tvOS视差按钮的ObjC实现/</id>
-    <published>2015-11-18T12:31:54.000Z</published>
-    <updated>2015-11-19T17:33:14.000Z</updated>
-    <content type="html"><![CDATA[<p><img src="/img/2015/11/tvOS/tvOSButtonPic_thumb.jpg" alt=""></p>
+    <link rel="icon" href="/favicon.png">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">我们是一起动画开源组Animatious。我们致力于成为中国最顶尖的动效开源团队。</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/代码/">代码</a></li></ul>
+                  
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/about/index.html">关于</a></li>
+              
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://anius.io"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/代码/">代码</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-tvOS视差按钮的ObjC实现" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      tvOS视差按钮的ObjC实现
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/11/18/tvOS视差按钮的ObjC实现/" class="article-date">
+  <time datetime="2015-11-18T12:31:54.000Z" itemprop="datePublished">2015-11-18</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><img src="/img/2015/11/tvOS/tvOSButtonPic_thumb.jpg" alt=""></p>
 <h1 id="介绍">介绍</h1><p>苹果在最新发布的Apple TV里引入了有趣的<a href="https://developer.apple.com/tvos/human-interface-guidelines/icons-and-images/" target="_blank" rel="external">图标设计</a><br>具体说来 图标由2-5个分层图层构成 在图标被选中的时候 图标内每个图层进行不同幅度的位移 从而形成视觉上具有深度距离感的视差效果 图标构成和效果可以见视频:  </p>
 <p><video id="video" controls preload="none" autoplay loop><br>                                                <source src="https://developer.apple.com/tvos/human-interface-guidelines/icons-and-images/images/icons-and-images-layering.mp4" type="video/mp4"><br>                                                <source src="https://developer.apple.com/tvos/human-interface-guidelines/icons-and-images/images/icons-and-images-layering.ogv" type="video/ogg"><br>                                                <source src="https://developer.apple.com/tvos/human-interface-guidelines/icons-and-images/images/icons-and-images-layering.webm" type="video/webm"><br>                                            </video><br>这种效果很适合用于多媒体类应用 例如图书或者电影封面 让封面变得立体生动 然而这种效果目前只能在Apple TV的tvOS里见到<br>所以 如何在iOS上做出同样的效果呢？现在就让我们一起研究下视差按钮的实现原理 并且自己实现一个吧 ^_^  </p>
 <h2 id="原理">原理</h2><p>假设我们已经有了以下图片：（你可以从<a href="/files/2015/11/tvOS/tvOS-Gear.zip">下载链接</a>下载已经分层的四张图片）<br><img src="/img/2015/11/tvOS/tvOSButtonPic_1.jpg" alt="四张已经分层的图片"><br>基于这四张图片 我们该怎么对其进行变换来达到tvOS的视差效果呢？<br>重新观察上文中苹果官方的例子视频 我们可以得出以下结论：  </p>
@@ -49,18 +148,187 @@
 <iframe width="640" height="480" src="https://sketchfab.com/models/899bdd009cc64af0b2260fe7570a0510/embed" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
 
 <p>以外 这篇文章里所有文件都是提供公共下载的<br>配图所用Sketch文件：<a href="/files/2015/11/tvOS/tvOS_Sketch.sketch">下载链接</a><br>三维模型文件（进入点击Download）：<a href="https://sketchfab.com/models/899bdd009cc64af0b2260fe7570a0510" target="_blank" rel="external">下载链接</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><img src="/img/2015/11/tvOS/tvOSButtonPic_thumb.jpg" alt=""></p>
-<h1 id="介绍">介绍</h1><p>苹果在最新发布的Apple TV里引入了有趣的<a href="https://developer.]]>
-    </summary>
-    
-      <category term="ObjC" scheme="http://anius.io/tags/ObjC/"/>
-    
-      <category term="tvOS" scheme="http://anius.io/tags/tvOS/"/>
-    
-      <category term="代码" scheme="http://anius.io/categories/%E4%BB%A3%E7%A0%81/"/>
-    
-  </entry>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://anius.io/2015/11/18/tvOS视差按钮的ObjC实现/" data-id="cih4sngbi0000dm6s157net3n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+          <a href="http://anius.io/2015/11/18/tvOS视差按钮的ObjC实现/#comments" class="article-comment-link"><i class="fa fa-comments"></i>评论</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ObjC/">ObjC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tvOS/">tvOS</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
   
-</feed>
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </section>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/Animatious" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+        <li><a class="social-tooltip" title="weibo" href="http://weibo.com/u/5760273536" target="_blank"><i class="icon fa fa-weibo"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="/atom.xml" target="_blank"><i class="icon fa fa-rss"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/18/tvOS视差按钮的ObjC实现/" class="thumbnail">
+  
+    <span style="background-image:url(/img/2015/11/tvOS/tvOSButtonPic_thumb.jpg
+)" alt="tvOS视差按钮的ObjC实现" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/代码/">代码</a></p>
+              <p class="item-title"><a href="/2015/11/18/tvOS视差按钮的ObjC实现/" class="title">tvOS视差按钮的ObjC实现</a></p>
+              <p class="item-date"><time datetime="2015-11-18T12:31:54.000Z" itemprop="datePublished">2015-11-18</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ObjC/">ObjC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tvOS/">tvOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ObjC/" style="font-size: 10px;">ObjC</a> <a href="/tags/tvOS/" style="font-size: 10px;">tvOS</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/" class="logo"></a>
+        </h1>
+        <p>&copy; 2015 Animatious</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'animatious';
+  
+  
+  var disqus_url = 'http://anius.io/2015/11/18/tvOS视差按钮的ObjC实现/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
