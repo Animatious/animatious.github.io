@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SCCatWaitingHUD的Objc代码实现 | Animatious 一起动画开源组</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="介绍这个创意其实来源于微博上@画渣程序猿mmoaay转发并艾特我的的一组gif图看到图的时候 我先对图大致进行了结构和层次的区分在设计物体动效的时候，首先是要对动画的不同对象进行拆分，在这里，老鼠，猫眼睛，眼皮，以及猫脸，他们各自的行为分别是不同的，因此分为不同的图层 
+
+在整体动画进行的时候，他们各自的layer所执行的动画是不同的看起来这个控件很简单，接下来我们就来分析一下写出这样一个控件需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SCCatWaitingHUD的Objc代码实现">
+<meta property="og:url" content="http://anius.io/2015/11/25/SCCatWaitingHUD/index.html">
+<meta property="og:site_name" content="Animatious 一起动画开源组">
+<meta property="og:description" content="介绍这个创意其实来源于微博上@画渣程序猿mmoaay转发并艾特我的的一组gif图看到图的时候 我先对图大致进行了结构和层次的区分在设计物体动效的时候，首先是要对动画的不同对象进行拆分，在这里，老鼠，猫眼睛，眼皮，以及猫脸，他们各自的行为分别是不同的，因此分为不同的图层 
+
+在整体动画进行的时候，他们各自的layer所执行的动画是不同的看起来这个控件很简单，接下来我们就来分析一下写出这样一个控件需要">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/pic1.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/circle.png">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/anchorpoint2.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/v.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/sinx.png">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/Vy.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/hudu.png">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/sinxx.jpg">
+<meta property="og:image" content="http://anius.io/img/2015/11/SCCatWaitingHUD/Sy.jpg">
+<meta property="og:updated_time" content="2015-11-25T14:10:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SCCatWaitingHUD的Objc代码实现">
+<meta name="twitter:description" content="介绍这个创意其实来源于微博上@画渣程序猿mmoaay转发并艾特我的的一组gif图看到图的时候 我先对图大致进行了结构和层次的区分在设计物体动效的时候，首先是要对动画的不同对象进行拆分，在这里，老鼠，猫眼睛，眼皮，以及猫脸，他们各自的行为分别是不同的，因此分为不同的图层 
+
+在整体动画进行的时候，他们各自的layer所执行的动画是不同的看起来这个控件很简单，接下来我们就来分析一下写出这样一个控件需要">
+  
+  
+    <link rel="icon" href="/ico_128.png">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">我们是一起动画开源组Animatious。我们致力于成为中国最顶尖的动效开源团队。</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/代码/">代码</a></li></ul>
+                  
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/portfolio/index.html">作品</a></li>
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/about/index.html">关于</a></li>
+              
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://anius.io"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/代码/">代码</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-SCCatWaitingHUD" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      SCCatWaitingHUD的Objc代码实现
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/11/25/SCCatWaitingHUD/" class="article-date">
+  <time datetime="2015-11-25T10:19:49.000Z" itemprop="datePublished">2015-11-25</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="介绍">介绍</h1><p>这个创意其实来源于微博上@画渣程序猿mmoaay转发并艾特我的的一组gif图<br>看到图的时候 我先对图大致进行了结构和层次的区分<br>在设计物体动效的时候，首先是要对动画的不同对象进行拆分，在这里，老鼠，猫眼睛，眼皮，以及猫脸，他们各自的行为分别是不同的，因此分为不同的图层 </p>
+<p><img src="/img/2015/11/SCCatWaitingHUD/pic1.jpg" alt=""></p>
+<p>在整体动画进行的时候，他们各自的layer所执行的动画是不同的<br>看起来这个控件很简单，接下来我们就来分析一下写出这样一个控件需要注意的关键点吧~</p>
+<h1 id="分析">分析</h1><p>先确认我们要做成什么样的控件  </p>
+<h2 id="首先_这是一个等待动画_所以应该做成一个HUD类型的控件">首先 这是一个等待动画 所以应该做成一个HUD类型的控件</h2><p>这样可以在当前window的上方出现和消失而不影响当前视图的展示<br>所以我们就要在应用当前默认的UIWindow上再添加一个UIWindow 这样可以在全局任何地方调用这个HUD 同时我们的HUD也要实现全局的单例模式  </p>
+<h2 id="其次是动画_最初的动画其实并不难">其次是动画 最初的动画其实并不难</h2><p>只是眼睛图层和老鼠图层围着各自的中心点旋转 且拥有相同的运动周期 这样能让他们在相同时间内移动的弧度是相同的 产生眼睛跟着老鼠走的感觉</p>
+<p><img src="/img/2015/11/SCCatWaitingHUD/circle.png" alt=""></p>
+<h2 id="最后是眼皮和眼珠的运动协调">最后是眼皮和眼珠的运动协调</h2><p>由于眼珠做的是匀速圆周运动 而眼皮做的是直线缩放运动 因此如何协调这两者的运动时间曲线 决定了最后的动画是否流畅和自然  </p>
+<h3 id="还有一点额外的临时产生的需求就是对横屏的支持">还有一点额外的临时产生的需求就是对横屏的支持</h3><p>这是我在写的过程中@sauchye提出的issue，所以我花了一个版本用来加上了对左右横屏的支持</p>
+<h1 id="代码实现">代码实现</h1><h2 id="UIWindow">UIWindow</h2><p>UIWindow 是每一个程序都必须创建的根视图，它是UIView的子类，但是地位却在所有的UIView之上。每一个程序在启动的时候，如果你使用了interface builder作为启动界面，那么Xcode会自动把你的第一个Controller添加到根window上，如果你要通过代码初始化Window，则必须要像系统要求的这样声明：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application willFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">UIWindow</span> *window = [[<span class="built_in">UIWindow</span> alloc] initWithFrame:[[<span class="built_in">UIScreen</span> mainScreen] bounds]];</span><br><span class="line"></span><br><span class="line">   myViewController = [[MyViewController alloc] init];</span><br><span class="line">   window<span class="variable">.rootViewController</span> = myViewController;</span><br><span class="line">   [window makeKeyAndVisible];</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在SCCatWaitingHUD中，由于需要存在一个不干扰原有程序代码逻辑和视图逻辑的View，因此最合适的办法就是声明一个独立的Window。HUD的这种使用模式可以参考MBProgressHUD，开发者可以在全局任意的地方调用HUD的显示，由于HUD所在的Window和系统原本的Window相比level更高，所以可以在不影响原有视图的情况下在任意页面显示。</p>
+<p>UIWindow的结构如下，我们可以看到UIWindow本身就是一个UIView，有一个名为rootViewController的属性，而这个属性就是这个window将会呈现的controller对象。</p>
+<p>Xcode7之后，苹果要求所有的UIWindow在声明的时候都需要有一个rootViewController，即通过代码声明的时候，需要定义一个rootViewController，然后在这个controller之上添加要显示的内容。但是经过验证，在程序运行中创建的非根Window的UIWindow，可以直接当做UIView来使用，仍然不需要强制给一个rootViewController。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.backgroundWindow</span> = [[<span class="built_in">UIWindow</span> alloc]initWithFrame:<span class="keyword">self</span><span class="variable">.frame</span>];</span><br><span class="line">_backgroundWindow<span class="variable">.windowLevel</span> = <span class="built_in">UIWindowLevelStatusBar</span>;</span><br><span class="line">_backgroundWindow<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> clearColor];</span><br><span class="line">_backgroundWindow<span class="variable">.alpha</span> = <span class="number">0.0</span>f;</span><br></pre></td></tr></table></figure>
+<p>所以我们这个HUD的主要显示对象就是名为<code>backgroundWindow</code>的UIWindow属性对象<br>那么怎么控制Window的出现和消失呢<br>UIWindow有几个方法:  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (void)makeKeyWindow;</span><br><span class="line">- (void)makeKeyAndVisible;                             // convenience. most apps <span class="operator"><span class="keyword">call</span> this <span class="keyword">to</span> <span class="keyword">show</span> the <span class="keyword">main</span> window <span class="keyword">and</span> also make it <span class="keyword">key</span>. otherwise <span class="keyword">use</span> <span class="keyword">view</span> hidden property</span></span><br></pre></td></tr></table></figure>
+<p>一般都是用上述第二个方法来让指定Window成为keyWindow并且出现。至于怎么让指定Window消失，苹果并没有提供一些特别的办法，官方文档中有给出下面这种用法</p>
+<pre><code>_backgroundWindow.hidden = <span class="type">YES</span>;
+// <span class="type">According</span> to <span class="type">Apple</span> <span class="type">Doc</span> : <span class="type">This</span> <span class="keyword">is</span> a convenience <span class="keyword">method</span> to make the receiver the main window <span class="keyword">and</span> displays it <span class="keyword">in</span> front <span class="keyword">of</span> other windows at the same window level <span class="keyword">or</span> lower. <span class="type">You</span> can also hide <span class="keyword">and</span> reveal a window <span class="keyword">using</span> the inherited hidden property <span class="keyword">of</span> <span class="type">UIView</span>.
+</code></pre><h2 id="Animation">Animation</h2><p>动画要解决的第一个问题就是，<strong>老鼠的旋转是绕着自身的中心点，然而两个眼珠的旋转并不是</strong>。<br>首先，旋转动画的实现我们肯定是通过<code>CATransform3DRotate</code>，基本的CAAnimation声明如下:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> radians(<span class="keyword">float</span> degrees) &#123;</span><br><span class="line">    <span class="keyword">return</span> ( degrees * <span class="number">3.14159265</span> ) / <span class="number">180.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">CATransform3D</span> getTransForm3DWithAngle(<span class="built_in">CGFloat</span> angle)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">CATransform3D</span>  transform = <span class="built_in">CATransform3DIdentity</span>;</span><br><span class="line">    transform  = <span class="built_in">CATransform3DRotate</span>(transform, angle, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> transform;</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="built_in">CABasicAnimation</span> *)rotationAnimation</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *rotationAnimation;</span><br><span class="line">    rotationAnimation = [<span class="built_in">CABasicAnimation</span> animationWithKeyPath:<span class="string">@"transform"</span>];</span><br><span class="line">    rotationAnimation<span class="variable">.fromValue</span> = [<span class="built_in">NSValue</span> valueWith<span class="built_in">CATransform3D</span>:getTransForm3DWithAngle(<span class="number">0.0</span>f)];</span><br><span class="line">    rotationAnimation<span class="variable">.toValue</span> = [<span class="built_in">NSValue</span> valueWith<span class="built_in">CATransform3D</span>:getTransForm3DWithAngle(radians(<span class="number">180.0</span>f))];</span><br><span class="line">    rotationAnimation<span class="variable">.duration</span> = <span class="keyword">self</span><span class="variable">.animationDuration</span>;</span><br><span class="line">    rotationAnimation<span class="variable">.cumulative</span> = <span class="literal">YES</span>;</span><br><span class="line">    rotationAnimation<span class="variable">.repeatCount</span> = HUGE_VALF;</span><br><span class="line">    rotationAnimation<span class="variable">.removedOnCompletion</span>=<span class="literal">NO</span>;</span><br><span class="line">    rotationAnimation<span class="variable">.fillMode</span>=k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    rotationAnimation<span class="variable">.autoreverses</span> = <span class="literal">NO</span>;</span><br><span class="line">    rotationAnimation<span class="variable">.timingFunction</span> = [<span class="built_in">CAMediaTimingFunction</span> functionWithName:k<span class="built_in">CAMediaTimingFunctionLinear</span>];</span><br><span class="line">    <span class="keyword">return</span> rotationAnimation;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们需要来看看CALayer的几个基本属性：frame、bounds、position、anchorPoint。frame和bounds都可以用UIView中的知识去理解，frame是相对于superLayer的位置和大小，而bounds是origin为(0,0)的frame。<br>而anchorPoint则是一个Layer的锚点，相信做过一些动画开发或者游戏开发的同学们都知道锚点的作用。锚点作为Layer变换的基准点，它的坐标值为相对于bounds宽高的比例。在iOS中，它的起始点是Layer的左上角，为标准原点(0，0)，右下角为(1,1)，默认值为中心点(0.5,0.5)；在MacOS中，起始点为左下角，(1,1)在右上角。所以通过修改锚点的相对位置，就可以让旋转的轴心变成我们需要的位置。  </p>
+<p>这里有一张图来说明锚点是什么。</p>
+<p><img src="/img/2015/11/SCCatWaitingHUD/anchorpoint2.jpg" alt=""></p>
+<p>因此我尝试着将眼珠的anchorPoint设置为(1.5,1.5)，旋转中心变成了接近眼睛中心的点。但是这时候我们还需要修改position来配合anchorPoint的改变。我们可以这么理解，position是锚点相对于父layer的坐标值，而anchorPoint则是锚点相对于自身的坐标值，两者共同决定了锚点和整个Layer所在的位置。<br>所以我们还需要调整眼珠Layer的position，来和之前设置的anchorPoint的位置重合。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_rightEye.layer.<span class="built_in">anchor</span>Point = CGPointMake(<span class="number">1.5</span>f, <span class="number">1.5</span>f);</span><br><span class="line">_rightEye.layer.position = CGPointMake(<span class="literal">self</span>.faceView.right - <span class="number">13.5</span>f, <span class="literal">self</span>.faceView.top + width/<span class="number">3.0</span>f + <span class="number">7.5</span>f);</span><br></pre></td></tr></table></figure>
+<p>这时候，上面的<code>CAAnimation</code>就可以正常的添加到Layer的transform上并且执行出来啦。</p>
+<h2 id="眼皮的运动时间曲线">眼皮的运动时间曲线</h2><p>这里最重要的一点就是要让眼皮和眼珠的运动达到协调一致，不会出现翻白眼也不会出现斗鸡眼（哈哈哈哈）。所以我们可以先分析出下面两个结论:</p>
+<ul>
+<li>眼皮的上下运动周期和眼珠的旋转运动周期一致</li>
+<li>眼皮在竖直方向上的位移和眼珠在竖直方向上的位移一致</li>
+<li>眼珠在圆周切线方向的线性速率是匀速的</li>
+</ul>
+<p>因此我们可以得出结论，眼皮在竖直方向上的速率曲线和眼珠在竖直方向上的速率曲线是一致的。我们来分析眼珠的速度方向。</p>
+<p><img src="/img/2015/11/SCCatWaitingHUD/v.jpg" alt=""></p>
+<p>通过将速度分解成水平X轴和竖直Y轴的分量后，我们可以得出竖直方向上的眼珠速度的速度曲线，就是简单的<br><img src="/img/2015/11/SCCatWaitingHUD/sinx.png" alt="">  </p>
+<p>函数图像如下<br><img src="/img/2015/11/SCCatWaitingHUD/Vy.jpg" alt="">  </p>
+<p>这里的y就是竖直速度分量Vy，x是t时刻的圆心角Q，由于这里做的是匀速圆周运动，因此角速度也是匀速的。我们可以将半周的时长定为常量T，半周的弧度是π，因此x和t的关系可以表示为<br><img src="/img/2015/11/SCCatWaitingHUD/hudu.png" alt=""></p>
+<p>大家知道位移等于速率乘以时间，因此我们有了速率公式，就可以得出眼皮在竖直方向上的位移公式如下<br><img src="/img/2015/11/SCCatWaitingHUD/sinxx.jpg" alt=""><br>这里我将常量T的值直接带入了。</p>
+<p>这个函数的图像如下<br><img src="/img/2015/11/SCCatWaitingHUD/Sy.jpg" alt=""></p>
+<p>注意，我们得出这个函数图像的主要目标是确定眼皮的上下缩放动画的时间曲线，这个曲线代表着位移和时间的函数关系。这时候，这个函数图像就是接下来要给眼皮加上的缩放动画的时间曲线了，我没有用专门的画贝塞尔曲线的软件来画，只是根据函数的图像大致画出了一个贝塞尔曲线，作为了下面这个动画的时间曲线</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">CAAnimationGroup</span> *)scaleAnimation</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 眼皮和眼珠需要确定一个运动时间曲线</span></span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *scaleAnimation;</span><br><span class="line">    scaleAnimation = [<span class="built_in">CABasicAnimation</span> animationWithKeyPath:<span class="string">@"transform"</span>];</span><br><span class="line">    scaleAnimation<span class="variable">.fromValue</span> = [<span class="built_in">NSValue</span> valueWith<span class="built_in">CATransform3D</span>:<span class="built_in">CATransform3DIdentity</span>];</span><br><span class="line">    scaleAnimation<span class="variable">.toValue</span> = [<span class="built_in">NSValue</span> valueWith<span class="built_in">CATransform3D</span>:<span class="built_in">CATransform3DMakeScale</span>(<span class="number">1.0</span>, <span class="number">3.0</span>, <span class="number">1.0</span>)];</span><br><span class="line">    scaleAnimation<span class="variable">.duration</span> = <span class="keyword">self</span><span class="variable">.animationDuration</span>;</span><br><span class="line">    scaleAnimation<span class="variable">.cumulative</span> = <span class="literal">YES</span>;</span><br><span class="line">    scaleAnimation<span class="variable">.repeatCount</span> = <span class="number">1</span>;</span><br><span class="line">    scaleAnimation<span class="variable">.removedOnCompletion</span>= <span class="literal">NO</span>;</span><br><span class="line">    scaleAnimation<span class="variable">.fillMode</span>=k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    scaleAnimation<span class="variable">.autoreverses</span> = <span class="literal">NO</span>;</span><br><span class="line">    scaleAnimation<span class="variable">.timingFunction</span> = [<span class="built_in">CAMediaTimingFunction</span> functionWithControlPoints:<span class="number">0.2</span>:<span class="number">0.0</span> :<span class="number">0.8</span> :<span class="number">1.0</span>];</span><br><span class="line">    scaleAnimation<span class="variable">.speed</span> = <span class="number">1.0</span>f;</span><br><span class="line">    scaleAnimation<span class="variable">.beginTime</span> = <span class="number">0.0</span>f;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CAAnimationGroup</span> *group = [<span class="built_in">CAAnimationGroup</span> animation];</span><br><span class="line">    group<span class="variable">.duration</span> = <span class="keyword">self</span><span class="variable">.animationDuration</span>;</span><br><span class="line">    group<span class="variable">.repeatCount</span> = HUGE_VALF;</span><br><span class="line">    group<span class="variable">.removedOnCompletion</span>= <span class="literal">NO</span>;</span><br><span class="line">    group<span class="variable">.fillMode</span>=k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    group<span class="variable">.autoreverses</span> = <span class="literal">YES</span>;</span><br><span class="line">    group<span class="variable">.timingFunction</span> = [<span class="built_in">CAMediaTimingFunction</span> functionWithControlPoints:<span class="number">0.2</span>:<span class="number">0.0</span>:<span class="number">0.8</span> :<span class="number">1.0</span>];</span><br><span class="line">    </span><br><span class="line">    group<span class="variable">.animations</span> = [<span class="built_in">NSArray</span> arrayWithObjects:scaleAnimation, <span class="literal">nil</span>];</span><br><span class="line">    <span class="keyword">return</span> group;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你可以看到<code>CAMediaTimingFunction</code>，这就是时间曲线的类，在一般情况下，系统会提供这么几种你常用到的时间曲线</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CA_EXTERN</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> k<span class="built_in">CAMediaTimingFunctionLinear</span></span><br><span class="line">    __OSX_<span class="built_in">AVAILABLE_STARTING</span> (__MAC_10_5, __IPHONE_2_0);</span><br><span class="line"><span class="built_in">CA_EXTERN</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> k<span class="built_in">CAMediaTimingFunctionEaseIn</span></span><br><span class="line">    __OSX_<span class="built_in">AVAILABLE_STARTING</span> (__MAC_10_5, __IPHONE_2_0);</span><br><span class="line"><span class="built_in">CA_EXTERN</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> k<span class="built_in">CAMediaTimingFunctionEaseOut</span></span><br><span class="line">    __OSX_<span class="built_in">AVAILABLE_STARTING</span> (__MAC_10_5, __IPHONE_2_0);</span><br><span class="line"><span class="built_in">CA_EXTERN</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> k<span class="built_in">CAMediaTimingFunctionEaseInEaseOut</span></span><br><span class="line">    __OSX_<span class="built_in">AVAILABLE_STARTING</span> (__MAC_10_5, __IPHONE_2_0);</span><br></pre></td></tr></table></figure>
+<p>他们分别代表了匀速运动，先快后慢，先慢后快，先快后慢再快这四种运动时间曲线。如果你要自定义时间曲线的话，系统也提供了绘制贝塞尔曲线的方法，你只要确定曲线的两个控制点坐标即可。而坐标的原点为(0，0)，最后收尾的点则在(1,1)，横轴为时间，纵轴为动画的执行程度，坐标值代表着相对比例值，因此我们可以截取上面的函数图像中横轴0到π的部分作为0到1的时间长度，来绘制贝塞尔曲线。</p>
+<h2 id="最后是一点对横屏的支持">最后是一点对横屏的支持</h2><p>由于我们实现的是一个独立的UIWindow，所以不能通过controller的几个涉及到屏幕旋转的回调来获得屏幕方向的变化。屏幕方向的旋转只会自动这时候我们就要通过监听系统的一个广播消息来获取屏幕状态的变化。</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[[NSNotificationCenter defaultCenter]</span> <span class="tag">addObserver</span><span class="pseudo">:self</span> <span class="tag">selector</span>:@<span class="tag">selector</span>(<span class="attribute">statusBarOrientationChange</span>:)  <span class="tag">name</span><span class="pseudo">:UIApplicationDidChangeStatusBarOrientationNotification</span> <span class="tag">object</span><span class="pseudo">:nil</span>];</span><br></pre></td></tr></table></figure>
+<p>在横屏切换的回调里，我记录了前一个屏幕状态，获取到当前屏幕状态，然后做了一个旋转的变换，这样整个HUD就会随着屏幕方向的变化而变化了。详细的实现可以直接看源代码，这里就不再贴出。</p>
+<h1 id="效果">效果</h1><p>这个开源控件的基本原理也就这些了，你可以在我的<a href="https://github.com/SergioChan/SCCatWaitingHUD" target="_blank" rel="external">github</a>上clone下源代码来阅读 :-) ，如果你有更好的建议或者想法也欢迎随时提PR。  </p>
+<h1 id="其他资源">其他资源</h1><p>文章内文件提供公共下载<br>配图所用Sketch文件：<a href="/files/2015/11/SCCatWaitingHUD/MAO.sketch">下载链接</a></p>
+<h1 id="作者">作者</h1><p>Sergio Chan<br>Github : <a href="https://github.com/SergioChan" target="_blank" rel="external">https://github.com/SergioChan</a><br>Weibo : <a href="http://weibo.com/sergiochan" target="_blank" rel="external">http://weibo.com/sergiochan</a>  </p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://anius.io/2015/11/25/SCCatWaitingHUD/" data-id="cihevfvxr0009n36sejc8rn9n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ObjC/">ObjC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WaitingHUD/">WaitingHUD</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-SCCatWaitingHUD" data-title="SCCatWaitingHUD的Objc代码实现" data-url="http://anius.io/2015/11/25/SCCatWaitingHUD/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'anius'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/Animatious" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+        <li><a class="social-tooltip" title="weibo" href="http://weibo.com/u/5760273536" target="_blank"><i class="icon fa fa-weibo"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="/atom.xml" target="_blank"><i class="icon fa fa-rss"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/11/18/tvOS视差按钮的ObjC实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">tvOS视差按钮的ObjC实现</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/25/SCCatWaitingHUD/" class="thumbnail">
+  
+    <span style="background-image:url(/img/2015/11/SCCatWaitingHUD/pic1.jpg
+)" alt="SCCatWaitingHUD的Objc代码实现" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/代码/">代码</a></p>
+              <p class="item-title"><a href="/2015/11/25/SCCatWaitingHUD/" class="title">SCCatWaitingHUD的Objc代码实现</a></p>
+              <p class="item-date"><time datetime="2015-11-25T10:19:49.000Z" itemprop="datePublished">2015-11-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/18/tvOS视差按钮的ObjC实现/" class="thumbnail">
+  
+    <span style="background-image:url(/img/2015/11/tvOS/tvOSButtonPic_thumb.jpg
+)" alt="tvOS视差按钮的ObjC实现" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/代码/">代码</a></p>
+              <p class="item-title"><a href="/2015/11/18/tvOS视差按钮的ObjC实现/" class="title">tvOS视差按钮的ObjC实现</a></p>
+              <p class="item-date"><time datetime="2015-11-18T12:31:54.000Z" itemprop="datePublished">2015-11-18</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ObjC/">ObjC</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WaitingHUD/">WaitingHUD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tvOS/">tvOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ObjC/" style="font-size: 20px;">ObjC</a> <a href="/tags/WaitingHUD/" style="font-size: 10px;">WaitingHUD</a> <a href="/tags/tvOS/" style="font-size: 10px;">tvOS</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/" class="logo"></a>
+        </h1>
+        <p>&copy; 2015 Animatious</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
