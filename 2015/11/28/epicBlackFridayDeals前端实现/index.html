@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Epic-Black-Friday-Deals 效果的前端技术实现 | Animatious 一起动画开源组</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="介绍这是一个通过 web 技术实现的效果演示 demo 。
+原设计链接： Epic-Black-Friday-Deals
+原效果图：
+
+Demo 链接： https://chemzqm.github.io/dribbble-effects/friday.html
+注：使用 safari 保存到桌面浏览效果更佳。
+整个效果分为两个部分实现，上半部分通过 canvas 不断绘制实现，下半部分使用了 c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Epic-Black-Friday-Deals 效果的前端技术实现">
+<meta property="og:url" content="http://anius.io/2015/11/28/epicBlackFridayDeals前端实现/index.html">
+<meta property="og:site_name" content="Animatious 一起动画开源组">
+<meta property="og:description" content="介绍这是一个通过 web 技术实现的效果演示 demo 。
+原设计链接： Epic-Black-Friday-Deals
+原效果图：
+
+Demo 链接： https://chemzqm.github.io/dribbble-effects/friday.html
+注：使用 safari 保存到桌面浏览效果更佳。
+整个效果分为两个部分实现，上半部分通过 canvas 不断绘制实现，下半部分使用了 c">
+<meta property="og:image" content="https://d13yacurqjgara.cloudfront.net/users/107759/screenshots/2372734/ink2.gif">
+<meta property="og:updated_time" content="2015-12-03T03:21:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Epic-Black-Friday-Deals 效果的前端技术实现">
+<meta name="twitter:description" content="介绍这是一个通过 web 技术实现的效果演示 demo 。
+原设计链接： Epic-Black-Friday-Deals
+原效果图：
+
+Demo 链接： https://chemzqm.github.io/dribbble-effects/friday.html
+注：使用 safari 保存到桌面浏览效果更佳。
+整个效果分为两个部分实现，上半部分通过 canvas 不断绘制实现，下半部分使用了 c">
+  
+  
+    <link rel="icon" href="/ico_128.png">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+
+
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">我们是一起动画开源组Animatious。我们致力于成为中国最顶尖的动效开源团队。</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">主页</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/代码/">代码</a></li></ul>
+                  
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/portfolio/index.html">作品</a></li>
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/about/index.html">关于</a></li>
+              
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://anius.io"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/代码/">代码</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-epicBlackFridayDeals前端实现" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Epic-Black-Friday-Deals 效果的前端技术实现
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/11/28/epicBlackFridayDeals前端实现/" class="article-date">
+  <time datetime="2015-11-28T13:25:40.000Z" itemprop="datePublished">2015-11-28</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="介绍">介绍</h1><p>这是一个通过 web 技术实现的效果演示 demo 。</p>
+<p>原设计链接： <a href="https://dribbble.com/shots/2372734-Epic-Black-Friday-Deals" target="_blank" rel="external">Epic-Black-Friday-Deals</a></p>
+<p>原效果图：</p>
+<p><img width="400px" height="300px" src="https://d13yacurqjgara.cloudfront.net/users/107759/screenshots/2372734/ink2.gif" alt="Ink2"></p>
+<p>Demo 链接： <a href="https://chemzqm.github.io/dribbble-effects/friday.html" target="_blank" rel="external">https://chemzqm.github.io/dribbble-effects/friday.html</a></p>
+<p>注：使用 safari 保存到桌面浏览效果更佳。</p>
+<p>整个效果分为两个部分实现，上半部分通过 canvas 不断绘制实现，下半部分使用了 css 的 transform 和 transition 来实现。 下面是详细介绍。</p>
+<h2 id="基于_canvas_实现的上半部分动画">基于 canvas 实现的上半部分动画</h2><h3 id="关于canvas">关于canvas</h3><p>canvas 是使用 javascript 进行绘图的基本 API, 它本身只提供了基础的画图 API （例如直线、弧线、曲线、矩形、填充等），通过学习<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial" target="_blank" rel="external">MDN提供的教程</a>, 一个具备 javascript 基本知识的开发者可以很快掌握。</p>
+<p>canvas 并不提供动画，事件等更高层的 API，所以需要相应功能都需要自行计算，或者借助其它库来实现。</p>
+<p>尽管抽象性很低（或者说非常底层）但是相应的好处是可塑性比较好，因为开发者可以精确的控制每一个细节如何完成。</p>
+<h3 id="canvas_动画实现">canvas 动画实现</h3><p>canvas 本身是静态的，并不提供动画，所以我们借助 API <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame" target="_blank" rel="external">requestAnimationFrame</a>， 通过重复的调用这个 API ， 不断的清空画布，并借助其返回的 timestamp 时间戳计算绘制所需的参数值，就可以实现动画效果了， 代码示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> raf = <span class="built_in">window</span>.requestAnimationFrame</span><br><span class="line"><span class="keyword">var</span> start</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params">timestamp</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!start) start = timestamp</span><br><span class="line">	<span class="comment">//通过持续时间不同重绘</span></span><br><span class="line">	drawImage(timestamp - start)</span><br><span class="line">	raf(animate)</span><br><span class="line">&#125;</span><br><span class="line">raf(animate)</span><br></pre></td></tr></table></figure>
+<p>当然你也能用 setInterval 这样的 API 实现，但是这么做性能太差，比如当前页面隐藏的时候 requestAnimationFrame 是不会触发调用的，这样就节省了客户端的资源。</p>
+<h3 id="实现缓动效果">实现缓动效果</h3><p>缓动效果可以让你的动画更柔和自然，<a href="http://easings.net/zh-cn" target="_blank" rel="external">easings.net</a>上可以看到已经命名的缓动函数，其实质就是把一个 0 到 1 之间的值进行转化。 <a href="https://github.com/component/ease/blob/master/index.js" target="_blank" rel="external">component/ease</a> 是一个实现了缓动函数的 javascript 库，我们拿它的一个函数 <code>inQuad</code> 举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inQuad</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n * n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> duration = <span class="number">600</span> <span class="comment">//动画持续 600 ms</span></span><br><span class="line"><span class="keyword">var</span> raf = <span class="built_in">window</span>.requestAnimationFrame</span><br><span class="line"><span class="keyword">var</span> start</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params">timestamp</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!start) start = timestamp</span><br><span class="line">	<span class="keyword">var</span> percent = (timestamp - start)/duration</span><br><span class="line">	<span class="comment">// 转化为缓动后的值</span></span><br><span class="line">	percent = inQuad(percent)</span><br><span class="line">	drawImage(percent)</span><br><span class="line">	raf(animate)</span><br><span class="line">&#125;</span><br><span class="line">raf(animate)</span><br></pre></td></tr></table></figure>
+<p>这样我们的 <code>drawImage</code>接收到的就是缓动后的百分比了。</p>
+<p>尽管 <code>drawImage</code> 接收到了百分比，但是具体的值很是需要自己计算，如果你想省事可以借助 <a href="https://github.com/component/tween" target="_blank" rel="external">component/tween</a> 之类的库来帮你计算属性值，事实上后面要讲到的日期选择的滑动效果就是借助 tween 来实现的.</p>
+<h2 id="keyframe(关键帧)_的实现">keyframe(关键帧) 的实现</h2><p>keyframe（关键帧）是一种对动画控制非常有用的抽象，比如说一个画一个圈的起始和终止就各自对应一个 keyframe，css animation 就是通过控制 keyframe 来实现动画的 API。 canvas 也有类似的库来实现 keyframe，例如 <a href="https://github.com/jeremyckahn/rekapi" target="_blank" rel="external">rekapi</a>。 因为这次的动画并不需要 playback 支持（或者说我比较懒），所以这次只是简单的通过状态来实现了不同效果的切换，代码大致如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">View</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">//负责圆圈的绘制</span></span><br><span class="line">	<span class="keyword">this</span>.circle = <span class="keyword">new</span> Circle(<span class="keyword">this</span>)</span><br><span class="line">	<span class="comment">//负责中间图标绘制</span></span><br><span class="line">	<span class="keyword">this</span>.icon = <span class="keyword">new</span> Icon(<span class="keyword">this</span>)</span><br><span class="line">	<span class="comment">//负责时间文本的绘制</span></span><br><span class="line">	<span class="keyword">this</span>.time = <span class="keyword">new</span> Time(<span class="keyword">this</span>)</span><br><span class="line">	<span class="keyword">this</span>.stat = <span class="string">'stopped'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//展开状态</span></span><br><span class="line">View.prototype.pend = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.stat = <span class="string">'pending'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//中间对勾效果</span></span><br><span class="line">View.prototype.check= <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.stat = <span class="string">'checking'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//重置为展开状态</span></span><br><span class="line">View.prototype.reset = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.stat = <span class="string">'reseting'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//主绘制函数</span></span><br><span class="line">View.prototype.draw = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.circle.draw()</span><br><span class="line">	<span class="keyword">this</span>.time.draw()</span><br><span class="line">	<span class="keyword">this</span>.icon.draw()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//每个子模块通过判定 view 的 stat 绘制</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Circle</span>(<span class="params">view</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.view = view</span><br><span class="line">&#125;</span><br><span class="line">Circle.prototype.draw = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> stat = <span class="keyword">this</span>.view.stat</span><br><span class="line">	<span class="keyword">switch</span> (stat) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'pending'</span>:</span><br><span class="line">			<span class="keyword">this</span>.pend()</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'checking'</span>:</span><br><span class="line">			<span class="keyword">this</span>.check()</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'reseting'</span>:</span><br><span class="line">			<span class="keyword">this</span>.reset()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// time 模块和 icon 模块同上</span></span><br></pre></td></tr></table></figure>
+<p>这种写法比较方便省事，但是抽象性比较差，建议需要灵活控制的话还是找一个适合的库来辅助。</p>
+<h2 id="动画流程控制">动画流程控制</h2><p>因为没有实现 keyframe ，所以流程控制（例如取消动画和动画连续）也得自己来实现了。 可选的办法有 callback 回调，事件，Promise等，这次使用了 Promise 实现，因为使用起来比较简洁，而且可以很容易实现取消操作。</p>
+<p>通过让 Promise reject 来取消原来动画流程：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">View.prototype.cancel = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.promise = <span class="keyword">this</span>.promise || <span class="built_in">Promise</span>.resolve(<span class="literal">null</span>)</span><br><span class="line">  <span class="keyword">this</span>.canceled = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.promise.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 当前 promise 已经执行完毕</span></span><br><span class="line">    self.canceled = <span class="literal">false</span></span><br><span class="line">  &#125;, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// reject 表明成功结束</span></span><br><span class="line">    self.canceled = <span class="literal">false</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">View.prototype.animate = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> duration = <span class="keyword">this</span>.duration</span><br><span class="line">  <span class="keyword">var</span> start</span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">var</span> promise = <span class="keyword">this</span>.promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// raf 调用的绘制主进程</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">step</span>(<span class="params">timestamp</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// transform 重置</span></span><br><span class="line">      <span class="comment">// 因为使用了 https://github.com/component/autoscale-canvas/blob/master/index.js 通过 scale 支持 Retina，</span></span><br><span class="line">      <span class="comment">// 所以这里不能简单的把 scale 设为 1</span></span><br><span class="line">      self.ctx.setTransform(<span class="built_in">window</span>.devicePixelRatio || <span class="number">1</span> ,<span class="number">0</span> ,<span class="number">0</span> ,<span class="built_in">window</span>.devicePixelRatio || <span class="number">1</span> ,<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">      <span class="comment">// 清空画布</span></span><br><span class="line">      self.ctx.clearRect(<span class="number">0</span>, <span class="number">0</span>, self.width, self.height)</span><br><span class="line">      <span class="comment">// 停止动画并且 reject</span></span><br><span class="line">      <span class="keyword">if</span> (self.canceled === <span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> reject()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (!start) start = timestamp</span><br><span class="line">      <span class="keyword">var</span> d = timestamp - start</span><br><span class="line">      <span class="comment">// 回着不同模块</span></span><br><span class="line">      self.draw()</span><br><span class="line">      <span class="comment">// 成功结束</span></span><br><span class="line">      <span class="keyword">if</span> (d &gt; duration) &#123;</span><br><span class="line">        <span class="keyword">return</span> resolve()</span><br><span class="line">      &#125;</span><br><span class="line">      raf(step)</span><br><span class="line">    &#125;</span><br><span class="line">    raf(step)</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> promise</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用 <code>view.cancel()</code> 就可以取消原来的流程了。</p>
+<p><a href="https://github.com/chemzqm/dribbble-effects/blob/master/lib/friday/index.js" target="_blank" rel="external">view模块</a> 的 <code>cancel</code> <code>pend</code> <code>reset</code> 和 <code>check</code> 方法都返回了 promise 对象，这样我们需要开始新的流程就可以这样写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 先取消当前动画</span></span><br><span class="line">view.cancel()</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 只有当前是 checked 完成状态才走 reset 流程</span></span><br><span class="line">  <span class="keyword">if</span> (view.checked) &#123;</span><br><span class="line">    <span class="keyword">return</span> view.reset().then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 暂停一下再开始展开</span></span><br><span class="line">      <span class="keyword">return</span> view.wait(<span class="number">300</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> view.pend()</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> view.check()</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 因为通过 fail 来终止动画，不捕获会报错</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="具体效果实现">具体效果实现</h3><ul>
+<li>消逝圆圈的残余尾巴：首先是设定了一个区间，例如：<code>arr = [1, 2, 2, 1, 1]</code> 表示有 <code>arr.length</code> 个区间，每个区间有 <code>arr[i]</code> 个尾巴，每次变换区间都重新生成尾巴：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">step_len = arr.length</span><br><span class="line">Circle.prototype.pend = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="keyword">this</span>.ctx</span><br><span class="line">  <span class="keyword">var</span> percent = <span class="keyword">this</span>.view.percent</span><br><span class="line">  <span class="keyword">var</span> step = <span class="built_in">Math</span>.floor(percent*step_len)</span><br><span class="line">  <span class="comment">// step 转变，生成新的 tail</span></span><br><span class="line">  <span class="keyword">if</span> (step &gt; <span class="keyword">this</span>.step) &#123;</span><br><span class="line">    <span class="keyword">this</span>.createTails()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.step = step</span><br><span class="line">  <span class="comment">// 绘制每一个tail</span></span><br><span class="line">  <span class="keyword">this</span>.tails.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">tail</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 计算 tail 的 percent</span></span><br><span class="line">    <span class="keyword">var</span> p = percent*step_len - step</span><br><span class="line">    <span class="comment">// tail 根据自己 percent (0 为初始 1为消失)进行绘制</span></span><br><span class="line">    tail.draw(p)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Circle.prototype.createTails = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> n = <span class="keyword">this</span>.step</span><br><span class="line">  <span class="keyword">var</span> num = steps[n]</span><br><span class="line">  <span class="keyword">var</span> tails = []</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> tail = <span class="keyword">new</span> Tail(<span class="keyword">this</span>, i)</span><br><span class="line">    tails.push(tail)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.tails = tails</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间动画的计算，这里的展开和重置动画是不同的（暂开时分秒的动画要远快与时，重置时时分秒的速率是相同的），所以也就不能简单的 playback 了，重置时只需要 <code>percent*total</code> 就能计算对应的十分秒，展开时需要根据一天的十分秒进行一点计算：<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function pad(<span class="keyword">n</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> ('0' + <span class="literal">String</span>(<span class="keyword">n</span>)).slice(-2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function toHMS(<span class="keyword">n</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> <span class="keyword">h</span> = Math.<span class="literal">floor</span>(<span class="keyword">n</span>/3600)</span><br><span class="line">  <span class="keyword">var</span> <span class="keyword">m</span> = Math.<span class="literal">floor</span>((<span class="keyword">n</span> - <span class="keyword">h</span>*3600)/60)</span><br><span class="line">  <span class="keyword">var</span> s = Math.<span class="literal">floor</span>(<span class="keyword">n</span>%60)</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="keyword">h</span>: pad(<span class="keyword">h</span>),</span><br><span class="line">    <span class="keyword">m</span>: pad(<span class="keyword">m</span>),</span><br><span class="line">    s: pad(s)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1天的秒数</span></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">total</span> = 24*60*60</span><br><span class="line"><span class="comment">// 获取 hms</span></span><br><span class="line">toHMS(<span class="keyword">n</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其实这里有个坑，就是因为秒数变化飞快，有可能 1/60 秒就完成了 0~60 的变化, 这样如果浏览器是 60hz 的话就只会显示相对固定的秒数，例如 <code>5x</code> (x为0 ~ 9), 解决办法就是调整下动画持续时间 😅</p>
+<ul>
+<li><p>设置动态文本。这次本来打算使用自定义字体 ProximaNova-Light 来显示时间的，但是发现这个字体的数字不是等宽的，结果就是显示动画的时候数字会一直抖动，改为系统自带字体 <code>sans-serif</code> <code>Helvetica</code> 就没有这种问题。</p>
+</li>
+<li><p>对勾的实现。本次实现最为复杂的部分，因为涉及角度、位置、长度的精确计算，最后使用了黄金分割，也就是右边比左边 1.618: 1, 结果比较满意。代码如下：</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Icon.prototype.drawCorrect = <span class="function"><span class="keyword">function</span> (<span class="params">p, tx</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> l = <span class="number">14</span></span><br><span class="line">  <span class="keyword">var</span> tl = <span class="number">2.618</span>*l</span><br><span class="line">  <span class="keyword">var</span> len = tl*(outBack(p))</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="keyword">this</span>.ctx</span><br><span class="line">  <span class="keyword">var</span> x = <span class="keyword">this</span>.x</span><br><span class="line">  <span class="keyword">var</span> y = <span class="keyword">this</span>.y</span><br><span class="line">  <span class="comment">// 起始 x y</span></span><br><span class="line">  <span class="keyword">var</span> sx = x - <span class="number">10</span></span><br><span class="line">  <span class="keyword">var</span> sy = y - <span class="number">3</span></span><br><span class="line">  <span class="keyword">var</span> subtense = <span class="built_in">Math</span>.min(len, l)</span><br><span class="line">  <span class="comment">// 中间点 x y</span></span><br><span class="line">  <span class="keyword">var</span> mx = sx + subtense*<span class="built_in">Math</span>.cos(<span class="number">45</span>*PI/<span class="number">180</span>)</span><br><span class="line">  <span class="keyword">var</span> my = sy + subtense*<span class="built_in">Math</span>.sin(<span class="number">45</span>*PI/<span class="number">180</span>)</span><br><span class="line">  tx = tx != <span class="literal">null</span> ? tx : - <span class="number">8</span>*(<span class="number">1</span> - outBack(p))</span><br><span class="line">  <span class="comment">// 偏移量</span></span><br><span class="line">  ctx.translate(tx, <span class="number">0</span>)</span><br><span class="line">  ctx.beginPath()</span><br><span class="line">  ctx.moveTo(sx, sy)</span><br><span class="line">  ctx.lineTo(mx, my)</span><br><span class="line">  <span class="keyword">if</span> (len &gt; l) &#123;</span><br><span class="line">    subtense = len - l</span><br><span class="line">    <span class="comment">// 终止 x y</span></span><br><span class="line">    <span class="keyword">var</span> ex = mx + subtense*<span class="built_in">Math</span>.cos(<span class="number">50</span>*PI/<span class="number">180</span>)</span><br><span class="line">    <span class="keyword">var</span> ey = my - subtense*<span class="built_in">Math</span>.sin(<span class="number">50</span>*PI/<span class="number">180</span>)</span><br><span class="line">    ctx.lineTo(ex, ey)</span><br><span class="line">  &#125;</span><br><span class="line">  ctx.stroke()</span><br><span class="line">  <span class="comment">// 重置 transform</span></span><br><span class="line">  ctx.setTransform(<span class="built_in">window</span>.devicePixelRatio || <span class="number">1</span> ,<span class="number">0</span> ,<span class="number">0</span> ,<span class="built_in">window</span>.devicePixelRatio || <span class="number">1</span> ,<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 出去一点返回</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outBack</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> s = <span class="number">1.70158</span>;</span><br><span class="line">  <span class="keyword">return</span> --n * n * ((s + <span class="number">1</span>) * n + s) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里几个点的坐标不用重复计算的，但是比较偷懒就没抽象出去🙂</p>
+<ul>
+<li>创建遮罩。为了实现中间图标的进入和退出效果，我在每次动画的时候都在中间图标的左边或者右边创建了一个与背景色相同的矩形区域，这样图标出去的时候就会被遮罩盖住，看上就就好象图标是在下一层退出的一样。(因为canvas 并没有 z-index)</li>
+</ul>
+<h2 id="基于_Dom_的下半部分日期选择模块">基于 Dom 的下半部分日期选择模块</h2><h3 id="日期状态变化时颜色渐变">日期状态变化时颜色渐变</h3><p>只需要用 css 一个 transion 就能实现：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">transition</span>: <span class="tag">color</span> 0<span class="class">.5s</span> <span class="tag">linear</span>;</span><br></pre></td></tr></table></figure>
+<p>对应状态切换时改变元素的 className 就可以了，（小技巧: classList API）</p>
+<h3 id="日期列表触摸滚动实现">日期列表触摸滚动实现</h3><p>通过不断调整元素的 translateX 或者有 translate3d 时调整 translate3d 的 x 值实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = el.style</span><br><span class="line"><span class="keyword">if</span> (has3d) &#123;</span><br><span class="line">  s[transform] = <span class="string">'translate3d('</span> + x + <span class="string">'px, 0, 0)'</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  s[transform] = <span class="string">'translateX('</span> + x + <span class="string">'px)'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里相对复杂的一步就是 touchend 时计算之后动画的持续时间、最终位置和缓动函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 减速度</span></span><br><span class="line"><span class="keyword">var</span> deceleration = <span class="number">0.0004</span></span><br><span class="line"><span class="comment">// 当前滑动速度</span></span><br><span class="line"><span class="keyword">var</span> speed = <span class="keyword">this</span>.speed</span><br><span class="line"><span class="keyword">var</span> x = <span class="keyword">this</span>.x</span><br><span class="line"><span class="comment">// 限定速度</span></span><br><span class="line">speed = <span class="built_in">Math</span>.min(speed, <span class="number">0.6</span>)</span><br><span class="line"><span class="keyword">var</span> minX = - (<span class="keyword">this</span>.total - <span class="keyword">this</span>.count)*width</span><br><span class="line"><span class="comment">// 估算终点</span></span><br><span class="line"><span class="keyword">var</span> destination = x + ( speed * speed ) / ( <span class="number">2</span> * deceleration ) * ( <span class="keyword">this</span>.distance &lt; <span class="number">0</span> ? -<span class="number">1</span> : <span class="number">1</span> )</span><br><span class="line"><span class="comment">// 估算时间</span></span><br><span class="line"><span class="keyword">var</span> duration = speed / deceleration</span><br><span class="line"><span class="keyword">var</span> newX</span><br><span class="line"><span class="keyword">var</span> ease = <span class="string">'out-cube'</span></span><br><span class="line"><span class="comment">// 终点超出右边界 重算终点和缓动函数</span></span><br><span class="line"><span class="keyword">if</span> (destination &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  newX = <span class="number">0</span></span><br><span class="line">  ease = <span class="string">'out-back'</span></span><br><span class="line"><span class="comment">// 终点小于左边界 重算终点和缓动函数</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (destination &lt; minX) &#123;</span><br><span class="line">  newX = minX</span><br><span class="line">  ease = <span class="string">'out-back'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 超出边界的话重算持续时间</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> newX === <span class="string">'number'</span>) &#123;</span><br><span class="line">  duration = duration*<span class="built_in">Math</span>.abs((newX - x + <span class="number">50</span>)/(destination - x))</span><br><span class="line">  <span class="comment">//duration = Math.max(200, duration)</span></span><br><span class="line">  destination = newX</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 当前点在边界外，固定持续时间和缓动函数</span></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">0</span> || x &lt; minX) &#123;</span><br><span class="line">  duration = <span class="number">500</span></span><br><span class="line">  ease = <span class="string">'out-circ'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 固定终点为子元素宽度的整数倍</span></span><br><span class="line">destination = <span class="built_in">Math</span>.round(destination/width)*width</span><br><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">  x: destination,</span><br><span class="line">  duration: duration,</span><br><span class="line">  ease: ease</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>计算完成后把结果传递给 <code>tween</code> 对象就可以开始滑动了。</p>
+<h3 id="日期选择">日期选择</h3><p>用到了 <a href="https://github.com/component/events" target="_blank" rel="external">events</a> 实现事件代理, 以及<a href="https://github.com/chemzqm/tap-event" target="_blank" rel="external">tap-event</a>实现正确的 tap 事件 （都是非常常用的移动端组件）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单的判定，防止 click 和 tap 事件同时触发</span></span><br><span class="line"><span class="keyword">var</span> hastouch = <span class="string">'ontouchstart'</span> <span class="keyword">in</span> <span class="built_in">window</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Footer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.events = events(el, <span class="keyword">this</span>)</span><br><span class="line">  <span class="keyword">if</span> (hastouch) &#123;</span><br><span class="line">    <span class="keyword">this</span>.events.bind(<span class="string">'touchstart li'</span>, <span class="string">'ontap'</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.events.bind(<span class="string">'click li'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Footer.prototype.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> li = e.delegateTarget</span><br><span class="line">  <span class="keyword">var</span> children = <span class="keyword">this</span>.el.children</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, l = children.length; i &lt; l; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (li === children[i]) &#123;</span><br><span class="line">      <span class="comment">// 高亮选中元素</span></span><br><span class="line">      li.classList.add(<span class="string">'active'</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 移除其它元素高亮</span></span><br><span class="line">      li.classList.remove(<span class="string">'active'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Footer.prototype.ontap = tap(Footer.prototype.onclick)</span><br></pre></td></tr></table></figure>
+<h3 id="事件传递">事件传递</h3><p>使用的 <a href="https://github.com/component/emitter" target="_blank" rel="external">component/emitter</a>, 它实现了非常简单的观察者模式（订阅发布模式）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Footer</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Emitter(el)</span><br><span class="line"></span><br><span class="line">Footer.prototype.active = <span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.emit(<span class="string">'change'</span>,  index)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">View</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> footer = <span class="keyword">this</span>.footer = <span class="keyword">new</span> Footer()</span><br><span class="line">  footer.on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">index</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// active 变化的事件代理函数</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样我们就实现了 <code>Footer</code> 模块和 <code>View</code> 模块的解耦合</p>
+<h2 id="Q_and_A">Q and A</h2><p>Q: 为什么没有注释?</p>
+<p>A: 实现比较仓促，而且也不是实际使用项目，所以比较偷懒，其实我的大部分项目都很严肃，也有比较完整的测试和注释。</p>
+<p>Q: 为什么 ios 上保存为 app 后状态栏是白色？</p>
+<p>A: 因为这是 ios9 的 bug， 原本可以透明的， <a href="https://forums.developer.apple.com/thread/9819" target="_blank" rel="external">了解更多</a></p>
+<p>Q: 为什么手机横过来就不能看了？</p>
+<p>A: 因为现在safari 还没有实现锁屏的 API !</p>
+<h2 id="最后">最后</h2><p>实现 web 动画还有 <a href="https://developer.mozilla.org/en/docs/Web/CSS/animation" target="_blank" rel="external">css animation</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API" target="_blank" rel="external">webgl</a> <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_animation_with_SMIL" target="_blank" rel="external">svg smil</a> 等方案，这次并没有用到，以后有机会再为大家介绍。</p>
+<p>或许是因为 web 存在很多的技术方案以及相应类库，导致很多做 web 的同学觉得搞特效很复杂，但事实并非如此, 只要你了解了它们基本特点并掌握基本方法，就足够做出不错的效果了，再附送一个更简单的例子：<a href="https://chemzqm.github.io/loadings/" target="_blank" rel="external">canvas loadings</a></p>
+<p>希望本文能帮你做出更好的 web 动画效果。</p>
+<h2 id="关于作者">关于作者</h2><p>chemzqm@gmail.com 一个以简洁高效为追求的 Javascript 开发者</p>
+<p>Github: <a href="https://github.com/chemzqm" target="_blank" rel="external">https://github.com/chemzqm</a></p>
+<p>weibo: <a href="http://weibo.com/chemzqm" target="_blank" rel="external">http://weibo.com/chemzqm</a></p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://anius.io/2015/11/28/epicBlackFridayDeals前端实现/" data-id="cihj4mqul0009rv6sqcuyj15g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+  
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-epicBlackFridayDeals前端实现" data-title="Epic-Black-Friday-Deals 效果的前端技术实现" data-url="http://anius.io/2015/11/28/epicBlackFridayDeals前端实现/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'anius'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>关注我 :</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/Animatious" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+        <li><a class="social-tooltip" title="weibo" href="http://weibo.com/u/5760273536" target="_blank"><i class="icon fa fa-weibo"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="/atom.xml" target="_blank"><i class="icon fa fa-rss"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/11/25/SCCatWaitingHUD/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <p class="article-nav-title">SCCatWaitingHUD的Objc代码实现</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/28/epicBlackFridayDeals前端实现/" class="thumbnail">
+  
+    <span style="background-image:url(https://d13yacurqjgara.cloudfront.net/users/107759/screenshots/2372734/ink2.gif
+)" alt="Epic-Black-Friday-Deals 效果的前端技术实现" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/代码/">代码</a></p>
+              <p class="item-title"><a href="/2015/11/28/epicBlackFridayDeals前端实现/" class="title">Epic-Black-Friday-Deals 效果的前端技术实现</a></p>
+              <p class="item-date"><time datetime="2015-11-28T13:25:40.000Z" itemprop="datePublished">2015-11-28</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/25/SCCatWaitingHUD/" class="thumbnail">
+  
+    <span style="background-image:url(/img/2015/11/SCCatWaitingHUD/pic1.jpg
+)" alt="SCCatWaitingHUD的Objc代码实现" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/代码/">代码</a></p>
+              <p class="item-title"><a href="/2015/11/25/SCCatWaitingHUD/" class="title">SCCatWaitingHUD的Objc代码实现</a></p>
+              <p class="item-date"><time datetime="2015-11-25T10:19:49.000Z" itemprop="datePublished">2015-11-25</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              
+<a href="/2015/11/18/tvOS视差按钮的ObjC实现/" class="thumbnail">
+  
+    <span style="background-image:url(/img/2015/11/tvOS/tvOSButtonPic_thumb.jpg
+)" alt="tvOS视差按钮的ObjC实现" class="thumbnail-image"></span>
+  
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/代码/">代码</a></p>
+              <p class="item-title"><a href="/2015/11/18/tvOS视差按钮的ObjC实现/" class="title">tvOS视差按钮的ObjC实现</a></p>
+              <p class="item-date"><time datetime="2015-11-18T12:31:54.000Z" itemprop="datePublished">2015-11-18</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/代码/">代码</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ObjC/">ObjC</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WaitingHUD/">WaitingHUD</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tvOS/">tvOS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ObjC/" style="font-size: 20px;">ObjC</a> <a href="/tags/WaitingHUD/" style="font-size: 10px;">WaitingHUD</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/tvOS/" style="font-size: 10px;">tvOS</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">链接</h3>
+    <div class="widget">
+      <ul>
+        
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/" class="logo"></a>
+        </h1>
+        <p>&copy; 2015 Animatious</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
